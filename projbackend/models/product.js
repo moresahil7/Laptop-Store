@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const{ObjectID} = mongoose.Schema;
+const{ObjectId} = mongoose.Schema;
 const productSchema = new mongoose.Schema({ 
     name: {
         type: String,
@@ -13,28 +13,28 @@ const productSchema = new mongoose.Schema({
         required: true,
         maxlength: 1000
     },
-    prizes: {
+    price: {
         type: Number,
         trim: true,
         required: true,
         maxlength: 32
     },
     category: {
-        type: ObjectID,
+        type: ObjectId,
         ref: "Category",
         required: true
     },
     stock: {
-        type: Number,
-        required: true
+        type: Number
     },
     sold: {
         type: Number,
+        default : 0
 
     },
     photo: {
         data: Buffer,
-        contentType: String,
+        contentType: String
 
     }
 },
