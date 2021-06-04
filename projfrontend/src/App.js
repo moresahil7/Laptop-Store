@@ -1,8 +1,7 @@
 import React from 'react';
-export default function Routes(){
-    return(
-        <div>
-            <h1>Hii</h1>
-        </div>
-    );
+
+export default function App(){
+  return(
+    <h1>Hey there</h1>
+  );
 }
