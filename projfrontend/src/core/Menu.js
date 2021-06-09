@@ -1,5 +1,8 @@
-import React from 'react';
+import userEvent from '@testing-library/user-event';
+import React, {Fragment} from 'react';
 import {Link, withRouter} from "react-router-dom";
+import {signout , isAuthenticated} from "../auth/helper";
+
 
 const currentTab = (history, path) => {
     if(history.location.pathname === path) {
@@ -25,19 +28,65 @@ const Menu = ({history}) => (
                 </Link>
 
             </li>
-            <li className="nav-item">
+
+           {isAuthenticated() && isAuthenticated().user.role === 0 &&  (
+                <li className="nav-item">
                 <Link style={ currentTab(history, "/user/dashboard") } className="nav-link" to="/user/dashboard">
-                    DashBoard
+                    U. DashBoard
                 </Link>
-
+            
             </li>
-            <li className="nav-item">
+           )}
+            
+                
+           {isAuthenticated() && isAuthenticated().user.role === 1 && (
+                <li className="nav-item">
                 <Link style={ currentTab(history, "/admin/dashboard") } className="nav-link" to="/admin/dashboard">
-                    Admin DashBoard
+                    A. DashBoard
                 </Link>
 
             </li>
-            {/* <li className="nav-item">
+           )}
+          
+            
+            {!isAuthenticated() && (
+                    <Fragment>
+            
+                    <li className="nav-item">
+                   <Link style={ currentTab(history, "/signup") } className="nav-link" to="/signup">
+                     Signup
+                   </Link>
+          
+                 </li>
+                 <li className="nav-item" >
+                    <Link style={ currentTab(history, "/signin") } className="nav-link" to="/signin">
+                        Sign In
+                   </Link>
+          
+                   </li>
+                  </Fragment>
+       
+            )}
+          
+               
+        
+            {isAuthenticated() && (
+                <li className="nav-item">
+                    <span
+                    className="nav-link text-warning"
+                    onClick={() => {
+                        signout(() => {
+                            history.push("/")
+                        });
+                    }}
+                        >
+                        Signout
+                    </span>
+                    
+                </li>
+
+            )}
+             <li className="nav-item">
                 <Link style={ currentTab(history, "/aboutus") } className="nav-link" to="/aboutus">
                     About Us
                 </Link>
@@ -48,28 +97,12 @@ const Menu = ({history}) => (
                     Contact Us
                 </Link>
 
-            </li> */}
-            <li className="nav-item" >
-                <Link style={ currentTab(history, "/signin") } className="nav-link" to="/signin">
-                    Sign In
-                </Link>
-
-            </li>
-            <li className="nav-item">
-                <Link style={ currentTab(history, "/signup") } className="nav-link" to="/signup">
-                    Signup
-                </Link>
-
-            </li>
-            <li className="nav-item">
-                <Link style={ currentTab(history, "/signout") } className="nav-link" to="/signout">
-                    Sign Out
-                </Link>
-
             </li>
         </ul>
     </div>
+    
 
 );
+
 
 export default withRouter(Menu);
