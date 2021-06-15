@@ -30,7 +30,7 @@ const Base = ({
                 </div>
                 <div className="container">
                     <span className="container text-white">
-                        Developed by <a href="https://github.com/sahilmore-0412"><strong>Sahil!</strong></a>
+                        Developed by <a target="_blank " href="https://github.com/sahilmore-0412" > <strong>Sahil!</strong></a>
                     </span>
                 </div>
             </footer>

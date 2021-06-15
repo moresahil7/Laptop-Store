@@ -2,6 +2,9 @@ import React from 'react';
 import Base from '../core/Base';
 import {Link} from "react-router-dom";
 import {isAuthenticated} from "../auth/helper/index";
+
+
+
 const AdminDashboard = () => {
 
 
@@ -57,7 +60,7 @@ const AdminDashboard = () => {
                        
                    </li>
                    <li className="list-group-item">
-                   <h5><span class="badge bg-secondary">Admin Property</span></h5>
+                   <h5><span class="badge bg-danger">Admin Property</span></h5>
                        
                    </li>
                </ul>

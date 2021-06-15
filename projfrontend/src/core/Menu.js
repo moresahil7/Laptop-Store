@@ -86,7 +86,7 @@ const Menu = ({history}) => (
                 </li>
 
             )}
-             <li className="nav-item">
+             {/* <li className="nav-item">
                 <Link style={ currentTab(history, "/aboutus") } className="nav-link" to="/aboutus">
                     About Us
                 </Link>
@@ -97,7 +97,7 @@ const Menu = ({history}) => (
                     Contact Us
                 </Link>
 
-            </li>
+            </li> */}
         </ul>
     </div>
     

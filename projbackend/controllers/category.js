@@ -5,7 +5,7 @@ exports.getCategoryById = (req, res, next, id) => {
     Category.findById(id).exec((err, cate)=>{
         if(err){
             return res.status(400).json({
-                erroe:"Category not found in Database"
+                error:"Category not found in Database"
             });
         }
         req.category = cate;
@@ -35,7 +35,7 @@ exports.getAllCategories = (req,res)=>{
     Category.find().exec((err,categories)=>{
         if(err){
             return res.status(400).json({
-                erroe:"No Categories Found"
+                error:"No Categories Found"
             })
         }
         res.json(categories);
