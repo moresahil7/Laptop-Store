@@ -2,16 +2,16 @@ const Product = require("../models/product");
 const formidable = require("formidable");
 const _ = require("lodash");
 const fs = require('fs');
-const product = require("../models/product");
+
 
 exports.getProductById = (req, res, next, id) =>{
-    Product.fingById(id)
+    Product.findById(id)
     .populate("category")
     .exec((err,product) =>{
         if(err){
             return res.status(400).json({
                 error:"Product not found"
-            })
+            });
         }
         req.product = product;
         next();
@@ -34,13 +34,7 @@ exports.createProduct = (req,res)=>{
         //destructure the fields
         const {name, description,price,category,stock} = fields;
 
-        if(
-            !name||
-            !description||
-            !price||
-            !category||
-            !stock
-        )
+        if (!name || !description || !price || !category || !stock)
         {
             return res.status(400).json({
                 error:"All fields are mandatory"
@@ -68,7 +62,7 @@ exports.createProduct = (req,res)=>{
           //save to DB
           product.save((err,product)=>{
               if(err){
-                  console.log(err)
+                //   console.log(err)
                   res.status(400).json({
                       error: "Saving Cars in DB failed"
                   });
@@ -86,8 +80,8 @@ exports.createProduct = (req,res)=>{
 
 
 exports.getProduct = (req, res) => {
-    req.product.photo = undefined
-    return res.json(req.product)
+    req.product.photo = undefined;
+    return res.json(req.product);
 };
 
 
@@ -112,8 +106,10 @@ exports.deleteProduct = (req , res) => {
             });
         }
         res.json({
-            message:"Deleted the product successfully"
+            message:"Deleted the product successfully",
+            deletedProduct
         });
+    
     });
   
 };
@@ -178,7 +174,7 @@ exports.updateProduct = (req , res) => {
 
 exports.getAllProducts = (req, res) => {
     let limit = req.query.limit ? parseInt(req.query.limit)  : 8
-    let sortBy = req.query.sortBy ? req.query.sortBy  : "id";
+    let sortBy = req.query.sortBy ? req.query.sortBy  : "_id";
     
 
 
@@ -204,7 +200,7 @@ exports.getAllUniqueCategories = (req,res) =>{
         if(err){
             return res.status(400).json({
                 error:"No categories found"
-            })
+            });
         }
         res.json(category);
 
@@ -218,11 +214,11 @@ exports.updateStock = (req, res, next) => {
                 filter:{_id: prod._id},
                 update: { $inc: {stock: -prod.count, sold: +prod.count}}
             }
-        }
+        };
     });
     Product.bulkWrite(myOperations, {} ,(err, products)=>{
         if (err){
-            res.status(400).json({
+            return res.status(400).json({
                 error:"Bulk Operations failed"
             })
         }

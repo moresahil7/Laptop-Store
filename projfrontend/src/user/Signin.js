@@ -26,7 +26,7 @@ const Signin = () => {
     setValues({ ...values, error: false, loading: true });
     signin({ email, password })
       .then(data => {
-        if (data.error) {
+        if (data?.error) {
           setValues({ ...values, error: data.error, loading: false });
         } else {
           authenticate(data, () => {
@@ -36,8 +36,7 @@ const Signin = () => {
             });
           });
         }
-      })
-      .catch(console.log("signin request failed"));
+      }).catch(console.log("signin request failed"));
   };
 
   const performRedirect = () => {
