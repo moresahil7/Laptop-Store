@@ -82,10 +82,26 @@ const AddProduct = () => {
     style={{display : createdProduct ? "" : "none" }}
     >
 
-      <h4>{createdProduct}</h4>
-      <h3>Created product Successfully</h3>
+<h4>" {createdProduct} " Created Successfully </h4>
+       
 
     </div>
+    );
+  }
+  const errorMessage =() =>{
+    return(
+    
+    
+    <div class="alert alert-warning alert-dismissible fade show" role="alert"
+    style={{display :error ? "" : "none" }} >
+      <h5>Failed to create the product! Try Again!!</h5>
+
+
+
+
+       
+
+</div>
     );
   }
 
@@ -176,6 +192,7 @@ const AddProduct = () => {
       </Link>
       <div className="row bg-dark text-white rounded ">
         <div className="col-md-8 offset-md-2">
+          {errorMessage()}
           {successMessage()}
           {createProductForm()}</div>
       </div>
