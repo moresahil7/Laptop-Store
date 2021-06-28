@@ -1,5 +1,7 @@
-import React from 'react'
+import React,{useState , useEffect} from 'react'
+import { addItemToCart, removeItemFromCart } from './helper/cartHelper';
 import ImageHelper from './helper/ImageHelper';
+import { Redirect } from 'react-router';
 
 
 
@@ -7,8 +9,13 @@ import ImageHelper from './helper/ImageHelper';
 const Card = ({
     product , 
     addtoCart = true,
-    removeFromCart = false
+    removeFromCart = false,
+    setReload = f => f ,
+    reload = undefined
 }) => {
+
+    const [redirect, setRedirect] = useState(false)
+    const [count, setCount] = useState(product.count)
 
 
 
@@ -19,12 +26,24 @@ const Card = ({
     const cardDescription  = product ? product.description: "Default description"
     const cardPrice  = product ? product.price: "Default"
 
+    const addToCart = () => {
+        addItemToCart(product, () => setRedirect (true))
+    }
+
+
+    const getARedirect = (redirect) => {
+        if(redirect){
+            return <Redirect to ="/cart" />
+        }
+
+    }
+
 
     const showAddToCart = (addtoCart) => {
         return(
             addtoCart && (
                 <button
-                    onClick={() => {}}
+                    onClick={addToCart}
                     className="btn btn-block btn-outline-success mt-2 mb-2"
                   >
                     Add to Cart
@@ -36,7 +55,11 @@ const Card = ({
         return(
             removeFromCart && (
                 <button
-                    onClick={() => {}}
+                    onClick={() => {removeItemFromCart(product._id);
+                    setReload(!reload);
+                    
+                    }}
+                    
                     className="btn btn-block btn-outline-danger mt-2 mb-2"
                   >
                       Remove From Cart
@@ -50,6 +73,7 @@ const Card = ({
           <div className="card text-white bg-dark border border-info ">
             <div className="card-header lead">{cardTitle}</div>
             <div className="card-body">
+                {getARedirect(redirect)}
               <ImageHelper product={product}/>
               <p className="lead bg-success font-weight-normal text-wrap">
                 {cardDescription}
