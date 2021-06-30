@@ -1,4 +1,4 @@
-const user = require("../models/user");
+// const user = require("../models/user");
 const User = require("../models/user");
 const Order = require("../models/order");
 
@@ -21,14 +21,14 @@ exports.getUser = (req, res) =>{
     //TODO: get back here for password
     req.profile.salt = undefined;
     req.profile.encry_password = undefined;
-    req.profile.createdAt = undefined;
-    req.profile.updatedAt = undefined;
-    req.profile.__v = undefined;
+    // req.profile.createdAt = undefined;
+    // req.profile.updatedAt = undefined;
+    // req.profile.__v = undefined;
     return res.json(req.profile);
 };
 
 exports.updateUser = (req,res) => {
-    user.findByIdAndUpdate(
+    User.findByIdAndUpdate(
         {
             _id : req.profile._id
         },

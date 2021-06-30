@@ -4,25 +4,27 @@ import {API} from "../backend";
 import Base from "./Base" ;
 import Card from './Card';
 import { getProducts } from './helper/coreapicalls';
-import { loadcart } from './helper/cartHelper';
+import { loadCart } from './helper/cartHelper';
+import Paymentb from "./Paymentb"
 
 
-const Cart= () =>  {
+
+const Cart = () =>  {
 
     const [products, setProducts] = useState([]);
     const [reload, setReload] = useState(false);
 
 
     useEffect(() => {
-      setProducts(loadcart)
-    }, [reload])
+      setProducts(loadCart());
+    }, [reload]);
 
 
 
 
 
 
-    const loadAllProducts = () =>{
+    const loadAllProducts = products =>{
         return(
             <div>
                 <h2>
@@ -33,16 +35,17 @@ const Cart= () =>  {
                     <Card 
                     key = {index}
                     product = {product}
-                    addtoCart = {false}
                     removeFromCart  = {true}
+                    addtoCart = {false}
+
                     setReload= {setReload}
                     reload= {reload}
-                    ></Card>
+                    />
                     )
                 })}
             </div>
-        )
-    }
+        );
+    };
     const loadCheckout = () =>{
         return(
             <div>
@@ -70,11 +73,16 @@ const Cart= () =>  {
         
             <div className="row text-center">
                 <div className="col-6">
-                    {loadAllProducts()}
-                    </div>
+                    {products.length>0 ? (
+                        loadAllProducts(products)
+                        ):(
+                        <h3>No products....</h3>
+                        )}
+                </div>
                 <div className="col-6"> 
-                {loadCheckout()}
-                    
+                <Paymentb
+                products = {products} setReload = {setReload}
+                />
 
                 </div>
             </div>

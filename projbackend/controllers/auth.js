@@ -46,7 +46,7 @@ exports.signin = (req,res) => {
         error:"User email doesn't exist"
       });
     }
-    if(!user.autheticate(password)){
+    if(!user.authenticate(password)){
       return res.status(401).json({
         error:"Email and Password do not match"
       });
