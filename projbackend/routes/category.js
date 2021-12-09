@@ -30,8 +30,13 @@ router.get("/category/:categoryId",getCategory);
 router.get("/categories",getAllCategories);
 
 //update route
-router.put("/category/:categoryId/:userId",
-isSignedIn,isAuthenticated,isAdmin, updateCategory);
+router.put(
+  "/category/:categoryId/:userId",
+isSignedIn,
+isAuthenticated,
+isAdmin, 
+updateCategory
+);
 
 //delete route
 router.delete("/category/:categoryId/:userId",

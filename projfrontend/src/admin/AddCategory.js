@@ -58,7 +58,7 @@ const AddCategory = ()=> {
         if(error){
         return(
             
-            <h4 className="text-success">Unable to create</h4>
+            <h4 className="text-success">Unable to Create the Category</h4>
             
         )
         }
@@ -70,7 +70,7 @@ const AddCategory = ()=> {
                     <p className="lead my-1">Enter Category</p>
                     <input 
                     type="text" 
-                    clasName="form-control my-1"
+                    className="form-control my-1"
                     autoFocus
                     onChange = {handleChange}
                     value = {name}

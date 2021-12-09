@@ -41,8 +41,8 @@ export const getAllCategories = () => {
  
 
 //update categories
-export const updateCategory = (categoryId, userId, token, category) => {
-  return fetch(`${API}/category/${categoryId}/${userId}`, {
+export const updateCategory = (category, categoryId, userId, token ) => {
+  return fetch(`${API}/category/${categoryId}/${userId}`,{
     method: "PUT",
     headers: {
       Accept: "application/json",

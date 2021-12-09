@@ -1,44 +1,55 @@
-import React,{useState , useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import { isAuthenticated } from '../auth/helper';
 import Base from '../core/Base';
 import { Link } from 'react-router-dom';
-import { updateCategory, getCategory } from './helper/adminapicall';
+import { updateCategory,getCategory,getAllCategories } from './helper/adminapicall';
 
 
 const UpdateCategory = ({match})=> {
+    const {user, token} = isAuthenticated();
+
     
     const [name, setName] = useState("");
     const [error , setError] = useState(false);
     const [success , setSuccess] = useState(false);
 
 
-    const {user, token} = isAuthenticated();
 
-    const preload = (categoryId) => {
-      getCategory(categoryId).then((data) => {
-        //console.log(data);
-        if (data.error) {
-          setError(data.error);
-        } else {
-          
-  
-         setName(name)
-          
-        }
-      });
-    };
+    const goBack = () => {
+        return(
+            <Link className = "btn btn-sm btn-info mb-3" to="/admin/dashboard">
+                Admin Home
+            </Link>
+        )
+    }
+
+    const preload = (categoryId) =>{
+        getCategory(categoryId).then((data=>{
+            if(data.error){
+                setError(true)
+            }
+            else{
+                setName(data.name);
+            }
+        }))
+    }
+
     useEffect(() => {
-      preload(match.params.categoryId);
-    }, []);
+        preload(match.params.categoryId);
+    
+    }, [])
+
+
+  
+
+
     const handleChange = event =>{
         setError("");
-        setName(event.target.value)
-        
+        setName( event.target.value)
     }
-    const onSubmit = (event) =>{
+    const onSubmit = event =>{
         event.preventDefault();
         setError("");
-        setSuccess(false);
 
 
 
@@ -50,9 +61,10 @@ const UpdateCategory = ({match})=> {
 
             }
             else{
-                
+                setError("")
                 setSuccess(true)
-                setName(data.name)
+                setName("")
+                
             }
 
         }).catch()
@@ -60,7 +72,7 @@ const UpdateCategory = ({match})=> {
     const successMessage  = () =>{
         if(success){
             return(
-                <h4 className="text-success"> Successfully updated the Category</h4>
+                <h4 className="text-success"> Successfully Updated the Category</h4>
             )
         }
     };
@@ -68,7 +80,7 @@ const UpdateCategory = ({match})=> {
         if(error){
         return(
             
-            <h4 className="text-success">Unable to update</h4>
+            <h4 className="text-success">Unable to Update </h4>
             
         )
         }
@@ -80,14 +92,14 @@ const UpdateCategory = ({match})=> {
                     <p className="lead my-1">Enter Category</p>
                     <input 
                     type="text" 
-                    clasName="form-control my-1"
+                    className="form-control my-1"
                     autoFocus
                     onChange = {handleChange}
-                    value = {name}
+                    value={name}
+                
                     required
                     placeholder = "For ex. Luxurious" /><br/>
-                    <button onClick={onSubmit}
-                         className="btn btn-outline-info  my-2">Update Category</button>
+                    <button onClick={onSubmit} className="btn btn-outline-info  my-2">Update Category</button>
                 </div>
 
             </form>
@@ -103,11 +115,10 @@ const UpdateCategory = ({match})=> {
                        {successMessage()}
                        {errorMessage()}
                        {myCategoryForm()}
-                       
+                       {goBack()}
                        
                    </div>
                </div>
-               <a href="http://localhost:3000/admin/categories">Manage Categories</a>
 
            </Base>
         </div>
