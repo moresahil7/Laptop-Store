@@ -28,7 +28,7 @@ const Cart = () =>  {
         return(
             <div>
                 <h2>
-                    This is to load products
+                    Products you added to cart
                 </h2>
                 {products.map((product, index) =>{
                     return(
@@ -50,7 +50,7 @@ const Cart = () =>  {
         return(
             <div>
                 <h2>
-                    This is for checkout
+                   CheckOut
                 </h2>
             </div>
         )
@@ -69,7 +69,7 @@ const Cart = () =>  {
 
 
     return(
-      <Base title="Cartpage" description="Ready to Checkout">
+      <Base title="Cart" description="Checkout">
         
             <div className="row text-center">
                 <div className="col-6">

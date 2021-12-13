@@ -35,9 +35,9 @@ const Home= () =>  {
 
 
     return(
-      <Base title="Homepage" description="My Cars Store">
+      <Base title="Laptop Store" description="My Laptop Store">
         <div className="row text-center">
-            <h1 className="text-white">All Cars</h1>
+            <h3 className="text-white">All kind of Laptops available</h3>
             <div className="row">
                 {products.map((product , index) => {
                     return (
