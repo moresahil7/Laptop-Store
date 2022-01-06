@@ -33,3 +33,17 @@ Clone `Laptop-Store` repository uing git:
 https://github.com/moresahil7/Laptop-Store
 cd Laptop-Store
 ```
+Install dependencies with this command
+```bash
+npm install
+```
+Run Application using this command
+```bash
+npm start
+```
+
+### Tech Stack used
+*React JS
+*Express JS
+*Node JS
+*Mongo DB
