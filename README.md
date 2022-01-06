@@ -43,7 +43,7 @@ npm start
 ```
 
 ### Tech Stack used
-*React JS
-*Express JS
-*Node JS
-*Mongo DB
+* React JS
+* Express JS
+* Node JS
+* Mongo DB
