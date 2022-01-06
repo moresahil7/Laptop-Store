@@ -25,3 +25,5 @@ This is a application which demonstrates an E-commerce website using the MERN st
 ![image](https://user-images.githubusercontent.com/82169025/148421340-ce901a2e-550c-4e98-81b9-ea3b18372bc9.png)
 
 
+# Getting Started
+To get started  simply clone this `Laptop-Store` repository in your machine and install dependencies using `npm install` command
