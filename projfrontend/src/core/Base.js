@@ -30,7 +30,7 @@ const Base = ({
                 </div>
                 <div className="container">
                     <span className="container text-white">
-                        Developed by <a target="_blank " href="https://sahilmore.netlify.app" > <strong>Sahil!</strong></a>
+                        Developed with 🤎 by <a target="_blank " href="https://sahilmore.netlify.app" > <strong>Sahil!</strong></a>
                     </span>
                 </div>
             </footer>
