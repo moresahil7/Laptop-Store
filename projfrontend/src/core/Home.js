@@ -19,7 +19,6 @@ const Home= () =>  {
         getProducts().then(data => {
             if(data.error){
                 setError(data.error);
-
             }
             else{
                 setProducts(data);

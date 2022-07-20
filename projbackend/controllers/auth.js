@@ -88,8 +88,6 @@ exports.isSignedIn  = expressJwt({
 
 });
 
-
-
 //custom middlewares
 
 exports.isAuthenticated = (req, res, next)  =>
