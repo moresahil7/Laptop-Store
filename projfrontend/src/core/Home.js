@@ -17,8 +17,8 @@ const Home= () =>  {
 
     const loadAllProducts = () => {
         getProducts().then(data => {
-            if(data.error){
-                setError(data.error);
+            if(data?.error){
+                setError(data?.error);
             }
             else{
                 setProducts(data);
@@ -38,7 +38,7 @@ const Home= () =>  {
         <div className="row text-center">
             <h3 className="text-white">All kind of Laptops available</h3>
             <div className="row">
-                {products.map((product , index) => {
+                {products?.map((product , index) => {
                     return (
                         <div key={index} className="col-4 mb-4">
                             <Card product ={product} />
