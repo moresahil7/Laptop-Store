@@ -21,10 +21,25 @@ Install dependencies with this command
 ```bash
 npm install
 ```
-Run Application using this command
+
+
+
+Run Backend using this command
 ```bash
 npm start
 ```
+
+Move to projfrontend folder from another terminal and install frontend dependencies
+```bash
+npm install
+```
+
+Run Frontend using this command
+```bash
+npm start
+```
+
+
 
 ### Tech Stack used
 * React JS
